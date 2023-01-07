@@ -61,7 +61,9 @@
       </section> -->
         <main>
           <aside class="filter__container">
-            <button class="newDiscussion-btn btn">NEW DISCUSSION</button>
+            <button class="newDiscussion-btn btn can-disable">
+              NEW DISCUSSION
+            </button>
             <ul class="filter__tagsContainer">
               <span>TAGS</span>
               <li class="filter__tags">
@@ -84,7 +86,6 @@
             </ul>
           </aside>
           <aside class="filter__container--mobile">
-            <button class="newDiscussion-btn btn">NEW DISCUSSION</button>
             <ul class="filter__tagsContainer--mobile">
               <span>TAGS</span>
               <select name="tags" id="tags-select">
@@ -102,108 +103,125 @@
                 <option class="filter__tags">node js</option>
               </select>
             </ul>
+            <button class="newDiscussion-btn btn can-disable">
+              NEW DISCUSSION
+            </button>
           </aside>
 
           <section class="discussion__wrapper">
             <ul class="discussions__container">
-              <template id = 'discussion-list'>
-              <li class="discussions">
-                <img src="./asset/git.png" class="discussions__tagImage" />
-                <div class="discussions__contentBox">
-                  <div class="discussions_title">
-                    "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지
-                    않습니다"
+              <template id="discussion-list">
+                <li class="discussions">
+                  <img src="./asset/git.png" class="discussions__tagImage" />
+                  <div class="discussions__contentBox">
+                    <div class="discussions_title">
+                      "koans 과제 진행 중 npm install 오류로 인해 정상 작동 되지
+                      않습니다"
+                    </div>
+                    <div class="discussions__infoBox">
+                      <div class="discussions__author">crowwan</div>
+                      <div class="discussions__createAt">2023.01.04</div>
+                    </div>
                   </div>
-                  <div class="discussions__infoBox">
-                    <div class="discussions__author">crowwan</div>
-                    <div class="discussions__createAt">2023.01.04</div>
-                  </div>
-                </div>
-                <div class="discussions__answered answered">Answered</div>
-              </li>
-            </template>
+                  <div class="discussions__answered answered">Answered</div>
+                </li>
+              </template>
             </ul>
           </section>
         </main>
         <!-- new discussion modal -->
-        <template id = 'newDiscussion-modal'>
-        <section class="newDiscussion modal">
-          <div class="newDiscussion__modal">
-            <header class="newDiscussion__modalTitle modal-title">
-              NEW DISCUSSION
-            </header>
-            <fieldset>
-              <span>TAGS</span>
-              <select name="discussion-tags" id="discussion-tags-select">
-                <option class="filter__tags">javascript</option>
-                <option class="filter__tags">node js</option>
-                <option class="filter__tags">javascript</option>
-                <option class="filter__tags">javascript</option>
-              </select>
-              <div class="inputTitle">
-                <div class="inputTitle__text modal-text">TITLE</div>
-                <input class="inputTitle__input discussion-input-title" />
+
+        <section class="modal">
+          <div class="modal__container">
+            <!-- TODO: TEXT CONTENT -->
+            <header class="modal__title">ANSWER TO DISCUSSION</header>
+            <div class="modal__contentTop">
+              <!-- TODO: TEXT CONTENT -->
+              <div class="modal__topText modal__text">id</div>
+              <!-- TODO: DOM -->
+              <input class="modal__input" />
+            </div>
+            <div class="modal__contentBody">
+              <!-- TODO: TEXT CONTENT -->
+              <div class="modal__bodyText modal__text">DISCUSSION</div>
+
+              <!-- TODO: DOM -->
+              <textarea type="text" class=""></textarea>
+            </div>
+            <div class="modal__contentBody">
+              <!-- TODO: TEXT CONTENT -->
+              <div class="modal__bodyText modal__text">DISCUSSION</div>
+              <!-- TODO: DOM -->
+              <div class="modal__body"></div>
+            </div>
+            <div class="modal__contentBody">
+              <!-- TODO: TEXT CONTENT -->
+              <div class="modal__bodyText modal__text">DISCUSSION</div>
+
+              <!-- TODO: DOM -->
+              <div class="modal__body">
+                asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddasd
               </div>
-              <div class="inputBody">
-                <div class="inputBody__text modal-text">DISCUSSION</div>
-                <textarea type="text" class="inputBody__input discussion-input-body"></textarea>
-              </div>
-              <div class="newDiscussion__btnList">
-                <button class="newDiscussion__submitBtn btn">SUBMIT</button>
-              </div>
-            </fieldset>
+            </div>
+            <div class="modal__btnList">
+              <!-- TODO: DOM -->
+              <button class="modal__btnList--btn btn">SUBMIT</button>
+              <button class="modal__btnList--btn btn">SUBMIT</button>
+              <button class="modal__btnList--btn btn">SUBMIT</button>
+            </div>
           </div>
         </section>
-      </template>
+
         <!-- sign in modal -->
-        <template id= 'signIn-modal'>
-        <section class="signIn modal">
+
+        <!-- <section class="signIn modal">
           <div class="signIn__modal">
-            <header class="signIn__modalTitle modal-title">
-              SIGN IN
-            </header>
+            <header class="signIn__modalTitle modal-title">SIGN IN</header>
             <fieldset>
               <div class="inputTitle">
                 <div class="inputTitle__text modal-text">ID</div>
-                <input class="inputTitle__input" />
+                <input class="inputId__input" />
               </div>
               <div class="inputPassword">
                 <div class="inputBody__text modal-text">PASSWORD</div>
-                <input type="password" class="inputPassword__input"></input>
+                <input type="password" class="inputPassword__input" />
               </div>
               <div class="signIn__btnList">
-                <button class="newDiscussion__submitBtn btn">SIGN IN</button>
+                <button class="sigIn__btn btn">SIGN IN</button>
               </div>
             </fieldset>
           </div>
-        </section>
-      </template>
+        </section> -->
+
         <!-- answer modal -->
-        <template id="answer-modal">
-        <section class="answer modal">
+
+        <!-- <section class="answer modal">
           <div class="answer__modal">
             <header class="answer__modalTitle modal-title">
               ANSWER TO DISCUSSION
             </header>
             <fieldset>
-              <div class="inputTitle ">
+              <div class="inputTitle">
                 <div class="inputTitle__text modal-text">TITLE</div>
                 <input class="inputTitle__input answer-input-title" />
               </div>
               <div class="inputBody">
                 <div class="inputBody__text modal-text">DISCUSSION</div>
-                <textarea type="text" class="inputBody__input answer-input-body"></textarea>
+                <textarea
+                  type="text"
+                  class="inputBody__input answer-input-body"
+                ></textarea>
               </div>
               <div class="newDiscussion__btnList">
                 <button class="newDiscussion__submitBtn btn">SUBMIT</button>
               </div>
             </fieldset>
           </div>
-        </section>
-      </template>
+        </section> -->
+
         <!-- discussion modal -->
-        <template id="discussion-modal">
-        <section class="discussion modal">
+
+        <!-- <section class="discussion modal">
           <div class="discussion__modal">
             <header class="discussion__modalTitle modal-title">
               DISCUSSION
@@ -211,24 +229,33 @@
             <fieldset>
               <div class="inputTitle">
                 <div class="inputTitle__text modal-text">TITLE</div>
-                <div class="discussion-title">title</div>
+                <div class="discussion-title">
+                  titletitletitletitletitletitle
+                </div>
               </div>
               <div class="inputBody">
                 <div class="inputBody__text modal-text">DISCUSSION</div>
-                <div class="discussion-body">asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddasd</div>
+                <div class="discussion-body">
+                  asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddasd
+                </div>
               </div>
               <div class="newDiscussion__btnList">
-                <button class="discussion__submitBtn btn">ANSWER</button>
-                <button class="discussion__submitBtn btn">EDIT</button>
-                <button class="discussion__submitBtn btn">REMOVE</button>
+                <button class="discussion__submitBtn btn can-disable">
+                  ANSWER
+                </button>
+                <button class="discussion__submitBtn btn can-disable">
+                  EDIT
+                </button>
+                <button class="discussion__submitBtn btn can-disable">
+                  REMOVE
+                </button>
               </div>
             </fieldset>
           </div>
-        </section>
-      </template>
+        </section> -->
       </div>
     </div>
   </body>
   <script src="data.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </html>
