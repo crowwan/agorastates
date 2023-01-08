@@ -1,4 +1,7 @@
-export const curry = (f) => (a, _) => _.length ? f(a, _) : (b) => f(a, b);
+export const curry =
+  (f) =>
+  (a, ..._) =>
+    _.length ? f(a, _) : (b) => f(a, b);
 
 export const map = curry((mapper, iter) => {
   const res = [];
