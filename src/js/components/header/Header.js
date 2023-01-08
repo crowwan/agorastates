@@ -8,15 +8,17 @@ import { SignUpModal } from "../modal/SignUpModal.js";
 export default function Header($app, initialState) {
   this.state = initialState;
   this.target = $c("header");
-  $app.append(this.target);
 
+  $app.append(this.target);
   user.subscribe(this);
-  log(user.getSubscribers());
-  console.log(this.state);
+
+  this.setState = (newState) => {
+    this.state = { ...this.state, ...newState };
+    this.render();
+  };
 
   this.target.addEventListener("click", (e) => {
     if (e.target.textContent === "LOG OUT") {
-      log(e.currentTarget);
       userAPI.logOut(e.currentTarget);
     }
     if (e.target.textContent === "SIGN UP") {
@@ -28,12 +30,6 @@ export default function Header($app, initialState) {
       const signInModal = new SignInModal($app, {});
     }
   });
-
-  this.setState = (newState) => {
-    this.state = { ...this.state, ...newState };
-    console.log(this.state);
-    this.render();
-  };
 
   this.render = () => {
     const html = `
