@@ -1,5 +1,5 @@
 import { storageAPI } from "../storage/storageAPI.js";
-import { parseJson } from "../utils/jsonUtils.js";
+import { parseJson, toJson } from "../utils/jsonUtils.js";
 import SHA256 from "../utils/hash.js";
 import { user } from "./user.js";
 export const userAPI = {
@@ -12,6 +12,9 @@ export const userAPI = {
     }
 
     userData[userId] = SHA256(userPw);
+    storageAPI.setData("user", toJson(userData));
+    user.setCurrentUser(userId);
+    user.notifyAll();
     return;
   },
   signIn(userId, userPw) {
@@ -25,8 +28,9 @@ export const userAPI = {
 
     return;
   },
-  logOut() {
+  logOut(tag) {
     user.setCurrentUser("");
+    user.notifyAll();
   },
 };
 
