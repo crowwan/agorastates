@@ -31,7 +31,8 @@ a,
 aside,
 nav,
 main,
-textarea {
+textarea,
+pre {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
