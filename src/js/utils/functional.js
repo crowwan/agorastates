@@ -5,7 +5,6 @@ export const curry =
 
 export const map = curry((mapper, iter) => {
   const res = [];
-
   for (const a of iter) res.push(mapper(a));
 
   return res;
@@ -32,7 +31,7 @@ export const reduce = curry((f, acc, iter) => {
   return acc;
 });
 
-export const go = (...args) => reduce((a, f) => f(a), ...args);
+export const go = (...args) => reduce((a, f) => f(a), args);
 
 export const pipe =
   (f, ...fs) =>
