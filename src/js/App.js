@@ -1,6 +1,6 @@
 import { user } from "./user/user.js";
 import { storageAPI } from "./storage/storageAPI.js";
-import Header from "./components/header/Header.js";
+import Header from "./components/layout/Header.js";
 import { log } from "./utils/log.js";
 export default function App($app) {
   this.setUp = () => {

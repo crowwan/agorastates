@@ -2,8 +2,8 @@ import { user } from "../../user/user.js";
 import { userAPI } from "../../user/userAPI.js";
 import { $c } from "../../utils/createElement.js";
 import { log } from "../../utils/log.js";
-import { SignInModal } from "../modal/SignInModal.js";
-import { SignUpModal } from "../modal/SignUpModal.js";
+import { SignInModal } from "../ui/SignInModal.js";
+import { SignUpModal } from "../ui/SignUpModal.js";
 
 export default function Header($app, initialState) {
   this.state = initialState;
