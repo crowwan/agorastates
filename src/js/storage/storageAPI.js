@@ -1,18 +1,23 @@
 import { map } from "../utils/functional.js";
 import storage from "./storage.js";
+import { agoraStatesDiscussions } from "../data/data.js";
+
 export const storageAPI = {
-  getData(key) {
-    if (localStorage.getItem(key)) return localStorage.getItem(key);
-  },
-  setData(key, data) {
-    localStorage.setItem(key, data);
-  },
-  setStorage() {
+  setInitialStorage() {
     const storageList = storage.getStorageList();
-    console.log("test");
     map(
-      (a) => (!storageAPI.getData(a) ? storageAPI.setData(a, "{}") : ""),
+      (a) => (!storage.getData(a) ? storage.setData(a, {}) : ""),
       storageList
     );
+
+    const dObj = {};
+    agoraStatesDiscussions.forEach((e) => {
+      dObj[e.id] = e;
+    });
+
+    if (Object.keys(storage.getData("discussion")).length === 0) {
+      console.log(storage.getData("discussion"));
+      storage.setData("discussion", dObj);
+    }
   },
 };
