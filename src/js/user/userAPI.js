@@ -1,34 +1,36 @@
-import { storageAPI } from "../storage/storageAPI.js";
-import { parseJson, toJson } from "../utils/jsonUtils.js";
+import storage from "../storage/storage.js";
 import SHA256 from "../utils/hash.js";
 import { user } from "./user.js";
 export const userAPI = {
-  signUp(userId, userPw) {
-    const userData = parseJson(storageAPI.getData("user"));
+  signUp(userId, userPw, url = "./asset/user.png") {
+    const userData = storage.getData("user");
 
     if (userData[userId]) {
       alert("아이디가 존재합니다.");
-      return;
+      return false;
     }
 
-    userData[userId] = SHA256(userPw);
-    storageAPI.setData("user", toJson(userData));
+    userData[userId] = { id: userId, pw: SHA256(userPw), url: url };
+    storage.setData("user", userData);
     user.setCurrentUser(userId);
     user.notifyAll();
-    return;
+    return true;
   },
-  signIn(userId, userPw) {
-    const userData = parseJson(storageAPI.getData("user"));
 
-    if (userData[userId] && userData[userId] === SHA256(userPw))
+  signIn(userId, userPw) {
+    const userData = storage.getData("user");
+    console.log(userId, userPw);
+    if (userData[userId] && userData[userId].pw === SHA256(userPw)) {
       user.setCurrentUser(userId);
-    else if (!userData[userId]) alert("아이디가 존재하지 않습니다.");
+      user.notifyAll();
+      return true;
+    } else if (!userData[userId]) alert("아이디가 존재하지 않습니다.");
     else if (!passwordMatch(userData[userId], SHA256(userPw)))
       alert("비밀번호가 틀렸습니다.");
 
-    return;
+    return false;
   },
-  logOut(tag) {
+  logOut() {
     user.setCurrentUser("");
     user.notifyAll();
   },
