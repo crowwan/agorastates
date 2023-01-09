@@ -1,4 +1,5 @@
 import { storageAPI } from "../../storage/storageAPI.js";
+import { user } from "../../user/user.js";
 import { $c } from "../../utils/createElement.js";
 
 import { filter, map } from "../../utils/functional.js";
@@ -6,9 +7,10 @@ export default function AsideL($app, initialState, onClick) {
   this.target = $c("aside");
   this.state = initialState;
 
+  user.subscribe(this);
+
   this.setState = (newState) => {
     this.state = { ...initialState, ...newState };
-    console.log(this.state);
     this.render();
   };
 
@@ -17,19 +19,18 @@ export default function AsideL($app, initialState, onClick) {
   this.target.classList.add("filter__container");
 
   this.render = () => {
-    console.log("render");
     const filterBy = this.state.tag;
     const tag = filter((e) => e.name !== "answer", filterBy);
-    console.log(filterBy[filterBy.length - 1]);
     const html = `
-    <button class="newDiscussion-btn btn can-disable">
+    <button class="newDiscussion-btn btn can-disable" ${
+      user.getCurrentUser() ? "" : "disabled"
+    }>
       NEW DISCUSSION
     </button>
     <ul class="filter__tagsContainer">
       <span>TAGS</span>
       ${map((e) => {
         // console.log(e);
-        console.log(e.selected);
         return `<li class = "filter__tags ${
           e.selected === true ? "selected" : ""
         }" data-filtername = ${e.name} >
