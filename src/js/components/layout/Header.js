@@ -1,15 +1,14 @@
 import { user } from "../../user/user.js";
 import { userAPI } from "../../user/userAPI.js";
 import { $c } from "../../utils/createElement.js";
-import { log } from "../../utils/log.js";
-import { SignInModal } from "../ui/SignInModal.js";
-import { SignUpModal } from "../ui/SignUpModal.js";
+import SignInModal from "../ui/SignInModal.js";
+import SignUpModal from "../ui/SignUpModal.js";
 
 export default function Header($app, initialState) {
   this.state = initialState;
-  this.target = $c("header");
+  this.$target = $c("header");
 
-  $app.append(this.target);
+  $app.append(this.$target);
   user.subscribe(this);
 
   this.setState = (newState) => {
@@ -17,13 +16,13 @@ export default function Header($app, initialState) {
     this.render();
   };
 
-  this.target.addEventListener("click", (e) => {
+  this.$target.addEventListener("click", (e) => {
     if (e.target.textContent === "LOG OUT") {
-      userAPI.logOut(e.currentTarget);
+      userAPI.logOut(e.current$target);
     }
     if (e.target.textContent === "SIGN UP") {
       const signUpModal = new SignUpModal($app, {
-        userId: user.getCurrentUser(),
+        hide: false,
       });
     }
     if (e.target.textContent === "SIGN IN") {
@@ -47,7 +46,7 @@ export default function Header($app, initialState) {
           </section>
         </header>
       `;
-    this.target.innerHTML = html;
+    this.$target.innerHTML = html;
   };
 
   this.render();
