@@ -4,9 +4,9 @@ import { map } from "../../utils/functional.js";
 import { filter } from "../../utils/functional.js";
 
 export default function AsideM($app, initialState, onClick) {
-  this.target = $c("aside");
+  this.$target = $c("aside");
   this.state = initialState;
-  this.target.classList.add("filter__container--mobile");
+  this.$target.classList.add("filter__container--mobile");
 
   user.subscribe(this);
 
@@ -14,9 +14,9 @@ export default function AsideM($app, initialState, onClick) {
     this.state = { ...initialState, ...newState };
     this.render();
   };
-  this.target.addEventListener("click", onClick);
+  this.$target.addEventListener("click", onClick);
 
-  this.target.classList.add("filter__container");
+  this.$target.classList.add("filter__container");
   this.render = () => {
     const filterBy = this.state.tag;
     const tag = filter((e) => e.name !== "answer", filterBy);
@@ -44,9 +44,9 @@ export default function AsideM($app, initialState, onClick) {
     }>
       NEW DISCUSSION
     </button>`;
-    this.target.innerHTML = html;
+    this.$target.innerHTML = html;
   };
 
-  $app.append(this.target);
+  $app.append(this.$target);
   this.render();
 }

@@ -4,7 +4,7 @@ import { $c } from "../../utils/createElement.js";
 
 import { filter, map } from "../../utils/functional.js";
 export default function AsideL($app, initialState, onClick) {
-  this.target = $c("aside");
+  this.$target = $c("aside");
   this.state = initialState;
 
   user.subscribe(this);
@@ -14,9 +14,9 @@ export default function AsideL($app, initialState, onClick) {
     this.render();
   };
 
-  this.target.addEventListener("click", onClick);
+  this.$target.addEventListener("click", onClick);
 
-  this.target.classList.add("filter__container");
+  this.$target.classList.add("filter__container");
 
   this.render = () => {
     const filterBy = this.state.tag;
@@ -45,10 +45,10 @@ export default function AsideL($app, initialState, onClick) {
         filterBy[filterBy.length - 1].selected ? "selected" : ""
       }>answer</li>
     </ul>`;
-    this.target.innerHTML = html;
+    this.$target.innerHTML = html;
   };
 
-  $app.append(this.target);
-  this.target.textContent = "test";
+  $app.append(this.$target);
+  this.$target.textContent = "test";
   this.render();
 }
