@@ -28,7 +28,7 @@ export const filterBy = [
     url: "./asset/git.png",
   },
   {
-    name: "answer",
+    name: "unanswered",
     url: "",
   },
 ];
