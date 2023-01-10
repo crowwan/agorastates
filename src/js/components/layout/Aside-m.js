@@ -11,7 +11,7 @@ export default function AsideM($app, initialState, onClick) {
   user.subscribe(this);
 
   this.setState = (newState) => {
-    this.state = { ...initialState, ...newState };
+    this.state = { ...this.state, ...newState };
     this.render();
   };
   this.$target.addEventListener("click", onClick);
@@ -19,7 +19,7 @@ export default function AsideM($app, initialState, onClick) {
   this.$target.classList.add("filter__container");
   this.render = () => {
     const filterBy = this.state.tag;
-    const tag = filter((e) => e.name !== "answer", filterBy);
+    const tag = filter((e) => e.name !== "unanswered", filterBy);
     const html = `
     <ul class="filter__tagsContainer">
       <span>TAGS</span>
@@ -35,9 +35,9 @@ export default function AsideM($app, initialState, onClick) {
 
     <ul class="filter__filterContainer">
       <span>FILTER BY</span>
-      <li data-filtername = 'answer' class=${
+      <li data-filtername = 'unanswered' class=${
         filterBy[filterBy.length - 1].selected ? "selected" : ""
-      }>answer</li>
+      }>unanswered</li>
     </ul>
     <button class="newDiscussion-btn btn can-disable" ${
       user.getCurrentUser() ? "" : "disabled"
