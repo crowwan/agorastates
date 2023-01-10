@@ -10,6 +10,7 @@ export default function DiscussionItem($app, props) {
     const discussionModal = new DiscussionModal($app, {
       discussionId: $li.dataset.discussionid,
       hide: false,
+      answering: false,
     });
   });
 
