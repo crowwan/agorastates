@@ -12,6 +12,7 @@ body {
 }
 
 #wrapper {
+  min-height: 100vh;
   background-color: var(--background-main-color);
   display: flex;
   justify-content: center;
@@ -135,11 +136,10 @@ main {
 #discussion__wrapper {
   flex: 1 0 70%;
   padding: 1rem;
+  min-height: 80vh;
   overflow-x: hidden;
 }
-.discussions__container {
-  height: 1000px;
-}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -147,7 +147,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  cursor: pointer;
   border-bottom: 1px solid var(--font-color);
 }
 .discussions__tagImage {
@@ -159,8 +159,8 @@ main {
 }
 .discussions__contentBox {
   padding: 1rem;
-  cursor: pointer;
-  width: 80%;
+
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -174,8 +174,7 @@ main {
 }
 .discussions__infoBox {
   display: flex;
-  font-size: 0.9rem;
-
+  font-size: 0.7rem;
   justify-content: space-between;
 }
 
@@ -205,7 +204,7 @@ main {
 }
 .modal__container {
   background-color: var(--background-main-color);
-  max-width: 80vw;
+  width: 80vw;
   max-height: 80vh;
   padding: 2rem;
   border-radius: 20px;
@@ -232,6 +231,13 @@ textarea {
   margin-bottom: 1rem;
   color: var(--font-color);
 }
+.modal__body * {
+  display: flex;
+  flex-wrap: wrap;
+}
+textarea {
+  height: 25vh;
+}
 
 input:focus,
 textarea:focus {
@@ -246,6 +252,7 @@ textarea:focus {
 .modal__body {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 .modal__body {
   border: 1px solid var(--font-point-color);
@@ -260,6 +267,23 @@ textarea:focus {
 .modal__btnList {
   display: flex;
   gap: 1rem;
+}
+.modal__discussionInfo {
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--font-point-color);
+  padding: 0 0 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-remove {
+  color: #f64a3a;
+  background-color: var(--icon-background-color);
+}
+.btn-remove:hover {
+  background-color: #f64a3a;
+  color: white;
 }
 
 @media screen and (max-width: 1024px) {
@@ -286,6 +310,12 @@ textarea:focus {
   .btnList__signIn {
     font-size: 0.5rem;
   }
+  .modal__text.modal__discussionInfo {
+    font-size: 0.5rem;
+  }
+  .modal__body {
+    font-size: 0.5rem;
+  }
 
   main {
     display: block;
@@ -302,8 +332,20 @@ textarea:focus {
     justify-content: space-between;
     flex-direction: row;
   }
+  .discussions__tagImage {
+    width: 40px;
+  }
   .newDiscussion-btn.btn {
     padding: 0.5rem 1rem;
+  }
+  .discussions {
+    font-size: 0.5rem;
+  }
+  .discussions_title {
+    font-size: 0.6rem;
+  }
+  .discussions__infoBox {
+    font-size: 0.5rem;
   }
 }
 
@@ -344,5 +386,8 @@ button:disabled {
   }
   .modal__btnList--btn {
     padding: 0.5rem 1rem;
+  }
+  .discussions__createAt {
+    display: none;
   }
 }
