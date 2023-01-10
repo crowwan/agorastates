@@ -9,7 +9,7 @@ export default function SignInModal($app, initialState) {
   this.state = initialState;
 
   this.setState = (newState) => {
-    this.state = { ...initialState, ...newState };
+    this.state = { ...this.state, ...newState };
     this.render();
   };
 
