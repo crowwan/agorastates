@@ -6,6 +6,9 @@ export const discussion = (() => {
   let discussions = storage.getData("discussion");
   let observers = [];
   return {
+    setUp() {
+      discussions = this.getDiscussions();
+    },
     getSubscribers() {
       return observers;
     },
@@ -25,13 +28,14 @@ export const discussion = (() => {
       return storage.getData("discussion");
     },
     setDiscussion(id, data) {
+      console.log(discussions);
       discussions[id] = data;
       storage.setData("discussion", discussions);
 
       this.notifyAll();
     },
     removeDiscussion(id) {
-      console.log(discussions["1673309921319"]);
+      console.log(discussions);
       delete discussions[id];
       storage.setData("discussion", discussions);
       this.notifyAll();
