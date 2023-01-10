@@ -182,6 +182,24 @@ main {
   color: var(--point-color);
   font-weight: bold;
 }
+.pagination {
+  margin-top: 1rem;
+}
+.pageList {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.pageList li {
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 1px solid var(--font-point-color);
+  border-radius: 5px;
+}
+.pageList li.now {
+  background-color: var(--font-point-color);
+  color: white;
+}
 
 /* modal */
 .modal {
@@ -345,6 +363,9 @@ textarea:focus {
     font-size: 0.6rem;
   }
   .discussions__infoBox {
+    font-size: 0.5rem;
+  }
+  .pagination {
     font-size: 0.5rem;
   }
 }
