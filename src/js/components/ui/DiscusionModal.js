@@ -4,9 +4,6 @@ import { $c } from "../../utils/createElement.js";
 import { $ } from "../../utils/query.js";
 import toStringFormat from "../../utils/toStringFormat.js";
 
-//TODO: 1. remove discussion done  2. add answer  3. if can edit discussion
-//TODO: answer Modal => discussion data handling
-
 export default function DiscussionModal($app, initialState) {
   this.$target = $c("section");
   this.$target.classList.add("modal");

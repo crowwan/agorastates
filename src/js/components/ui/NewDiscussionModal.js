@@ -1,7 +1,4 @@
-import storage from "../../storage/storage.js";
-
 import { $c } from "../../utils/createElement.js";
-import { $ } from "../../utils/query.js";
 
 export default function NewDiscussionModal($app, initialState, onSubmit) {
   this.$target = $c("section");

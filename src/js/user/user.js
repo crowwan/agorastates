@@ -1,5 +1,4 @@
 import { filter, go, map } from "../utils/functional.js";
-import { log } from "../utils/log.js";
 
 export const user = (() => {
   let currentUser = "";

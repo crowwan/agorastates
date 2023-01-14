@@ -1,5 +1,5 @@
 import { $c } from "../utils/createElement.js";
-import { go, map, filter } from "../utils/functional.js";
+import { map } from "../utils/functional.js";
 
 export default function Pagination($app, initialState, onPageClick) {
   this.$pagination = $c("div");

@@ -6,8 +6,8 @@ export default function DiscussionItem($app, props) {
   $li.className = "discussions";
   $li.dataset.discussionid = props.id;
 
-  $li.addEventListener("click", (e) => {
-    const discussionModal = new DiscussionModal($app, {
+  $li.addEventListener("click", () => {
+    new DiscussionModal($app, {
       discussionId: $li.dataset.discussionid,
       hide: false,
       answering: false,

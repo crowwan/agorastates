@@ -1,4 +1,3 @@
-import { user } from "../../user/user.js";
 import { userAPI } from "../../user/userAPI.js";
 import { $c } from "../../utils/createElement.js";
 import { $ } from "../../utils/query.js";

@@ -1,8 +1,7 @@
-import { storageAPI } from "../../storage/storageAPI.js";
 import { user } from "../../user/user.js";
 import { $c } from "../../utils/createElement.js";
-
 import { filter, map } from "../../utils/functional.js";
+
 export default function AsideL($app, initialState, onClick) {
   this.$target = $c("aside");
   this.state = initialState;
@@ -30,7 +29,6 @@ export default function AsideL($app, initialState, onClick) {
     <ul class="filter__tagsContainer">
       <span>TAGS</span>
       ${map((e) => {
-        // console.log(e);
         return `<li class = "filter__tags ${
           e.selected === true ? "selected" : ""
         }" data-filtername = ${e.name} >

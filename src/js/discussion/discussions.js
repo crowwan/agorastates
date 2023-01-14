@@ -1,6 +1,5 @@
 import storage from "../storage/storage.js";
 import { filter, go, map } from "../utils/functional.js";
-import { log } from "../utils/log.js";
 
 export const discussion = (() => {
   let discussions = storage.getData("discussion");

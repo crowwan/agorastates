@@ -1,7 +1,6 @@
 import { discussion } from "../../discussion/discussions.js";
 import { $c } from "../../utils/createElement.js";
 import { map } from "../../utils/functional.js";
-import { $ } from "../../utils/query.js";
 import DiscussionItem from "../DiscussionItem.js";
 import Pagination from "../Pagination.js";
 export default function ($app, initialState) {
