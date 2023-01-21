@@ -1,7 +1,7 @@
 import { $c } from "../../utils/createElement.js";
 import { $ } from "../../utils/query.js";
 import AsideL from "./Aside-l.js";
-import AsideM from "./Aside-m.js";
+// import AsideM from "./Aside-m.js";
 import { filterBy } from "../../data/filterBy.js";
 import { filter, go, map } from "../../utils/functional.js";
 import DiscussionSection from "./DiscussionSection.js";
@@ -93,7 +93,7 @@ export default function Main($app, initialState) {
         }, filterState),
       };
       asidel.setState(newState);
-      asidem.setState(newState);
+      // asidem.setState(newState);
     } else if (e.target.tagName === "BUTTON") {
       new NewDiscussionModal(
         this.$target,
@@ -112,13 +112,13 @@ export default function Main($app, initialState) {
     },
     onTagClick
   );
-  const asidem = new AsideM(
-    this.$target,
-    {
-      tag: filterState,
-    },
-    onTagClick
-  );
+  // const asidem = new AsideM(
+  //   this.$target,
+  //   {
+  //     tag: filterState,
+  //   },
+  //   onTagClick
+  // );
   const discussionSection = new DiscussionSection(this.$target, {
     start: 0,
     page: 0,
