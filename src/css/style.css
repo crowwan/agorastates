@@ -363,7 +363,7 @@ button:disabled {
   .header__title {
     font-size: 1rem;
   }
-  .filter__container--mobile {
+  .filter__container {
     flex-wrap: wrap;
     max-height: 20rem;
   }
