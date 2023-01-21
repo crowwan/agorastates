@@ -100,12 +100,10 @@ main {
   margin-right: 0.5rem;
 }
 
-.filter__container span,
-.filter__container--mobile span {
+.filter__container span {
   color: var(--font-point-color);
 }
-.filter__container li,
-.filter__container--mobile li {
+.filter__container li {
   padding: 0.5rem;
   border-radius: 5px;
   cursor: pointer;
@@ -113,25 +111,11 @@ main {
   transition: all 0.3s;
 }
 .filter__container li:hover,
-.filter__container li.selected,
-.filter__container--mobile li:hover,
-.filter__container--mobile li.selected {
+.filter__container li.selected {
   background-color: var(--icon-background-color);
   color: var(--font-point-color);
 }
 
-/* filter mobile */
-.filter__container--mobile {
-  display: none;
-}
-.filter__container--mobile .btn {
-  max-height: 3rem;
-}
-
-.filter__tagsContainer--mobile {
-  max-height: 100%;
-  overflow: auto;
-}
 /* discussion */
 #discussion__wrapper {
   flex: 1 0 70%;
@@ -339,16 +323,12 @@ textarea:focus {
     display: block;
   }
   .filter__container {
-    display: none;
-  }
-  .filter__container--mobile {
-    display: flex;
+    flex-direction: row-reverse;
     max-height: 5rem;
     overflow: auto;
     flex: 1 0 30%;
     padding: 1rem;
     justify-content: space-between;
-    flex-direction: row;
   }
   .discussions__tagImage {
     width: 40px;
