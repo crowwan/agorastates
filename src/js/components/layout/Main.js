@@ -25,7 +25,7 @@ export default function Main($app, initialState) {
       return { ...e, selected: false };
     }, filterBy);
     asidel.setState({ tag: filterState });
-    asidem.setState({ tag: filterState });
+    // asidem.setState({ tag: filterState });
     this.render();
   };
 
