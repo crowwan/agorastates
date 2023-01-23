@@ -1,14 +1,13 @@
 import { $c } from "../../utils/createElement.js";
 import { $ } from "../../utils/query.js";
 import AsideL from "./Aside-l.js";
-// import AsideM from "./Aside-m.js";
 import { filterBy } from "../../data/filterBy.js";
 import { filter, go, map } from "../../utils/functional.js";
 import DiscussionSection from "./DiscussionSection.js";
 import storage from "../../storage/storage.js";
-import NewDiscussionModal from "../ui/NewDiscussionModal.js";
 import { user } from "../../user/user.js";
 import { discussion } from "../../discussion/discussions.js";
+import Modal from "../ui/Modal.js";
 
 export default function Main($app, initialState) {
   this.$target = $c("main");
@@ -32,6 +31,23 @@ export default function Main($app, initialState) {
   const filterState = map((e) => {
     return { ...e, selected: false };
   }, filterBy);
+  const newDiscussionContent = [
+    {
+      text: "TITLE",
+      type: "input",
+      klass: "new-discussion-title",
+    },
+    {
+      text: "TAG",
+      type: "input",
+      klass: "new-discussion-tag",
+    },
+    {
+      text: "CONTENT",
+      type: "textarea",
+      klass: "new-discussion-content",
+    },
+  ];
 
   const onSubmit = () => {
     const $title = $(".new-discussion-title");
@@ -95,10 +111,20 @@ export default function Main($app, initialState) {
       asidel.setState(newState);
       // asidem.setState(newState);
     } else if (e.target.tagName === "BUTTON") {
-      new NewDiscussionModal(
+      new Modal(
         this.$target,
         {
           hide: false,
+          body: {
+            title: "NEW DISCUSSION",
+            contentBody: newDiscussionContent,
+          },
+          btns: [
+            {
+              type: "",
+              text: "SUBMIT",
+            },
+          ],
         },
         onSubmit
       );
