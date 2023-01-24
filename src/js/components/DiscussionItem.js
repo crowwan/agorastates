@@ -23,7 +23,7 @@ export default function DiscussionItem($app, props) {
       createdAt,
       id: Date.now(),
     };
-    discussion.setDiscussion(props.id, curDiscussion);
+    discussion.addDiscussion(props.id, curDiscussion);
   };
 
   const getBtns = () =>
