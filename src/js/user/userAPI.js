@@ -2,7 +2,7 @@ import storage from "../storage/storage.js";
 import SHA256 from "../utils/hash.js";
 import { user } from "./user.js";
 export const userAPI = {
-  signUp(userId, userPw, url = "./asset/user.png") {
+  signUp(userId, userPw, url) {
     const userData = storage.getData("user");
 
     if (userData[userId]) {
@@ -10,7 +10,11 @@ export const userAPI = {
       return false;
     }
 
-    userData[userId] = { id: userId, pw: SHA256(userPw), url: url };
+    userData[userId] = {
+      id: userId,
+      pw: SHA256(userPw),
+      url: url || "./asset/user.png",
+    };
     storage.setData("user", userData);
     user.setCurrentUser(userId);
     user.notifyAll();
