@@ -58,7 +58,7 @@ export default function Main($app, initialState) {
     const userList = storage.getData("user");
     const currentUser = userList[user.getCurrentUser()];
 
-    discussion.setDiscussion(id, {
+    discussion.addDiscussion(id, {
       id,
       author: currentUser.id,
       bodyHTML: $content.value,

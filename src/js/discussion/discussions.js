@@ -26,18 +26,17 @@ export const discussion = (() => {
     getDiscussions() {
       return storage.getData("discussion");
     },
-    setDiscussion(id, data) {
-      console.log(discussions);
+    addDiscussion(id, data) {
       discussions[id] = data;
+      this.setDiscussion();
+    },
+    setDiscussion() {
       storage.setData("discussion", discussions);
-
       this.notifyAll();
     },
     removeDiscussion(id) {
-      console.log(discussions);
       delete discussions[id];
-      storage.setData("discussion", discussions);
-      this.notifyAll();
+      this.setDiscussion();
     },
   };
 })();

@@ -7,9 +7,9 @@ export default (function () {
       return [...storageList];
     },
     getData(key) {
-      if (localStorage.getItem(key))
-        return parseJson(localStorage.getItem(key));
-      return null;
+      return localStorage.getItem(key)
+        ? parseJson(localStorage.getItem(key))
+        : null;
     },
     setData(key, data) {
       localStorage.setItem(key, toJson(data));
