@@ -16,13 +16,11 @@ export default function Pagination($app, initialState, onPageClick) {
   this.render = () => {
     const tmpl = `
     <ul class='pageList'>
-      <li><</li>
       ${map(
         (e) =>
           `<li ${e === this.state.page ? "class = now" : ""}>${e + 1}</li>`,
         pages
       ).join("")}
-      <li>></li>
     </ul>`;
     this.$pagination.innerHTML = tmpl;
   };
