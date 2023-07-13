@@ -5,15 +5,16 @@ import { $ } from "../../utils/query.js";
 import Modal from "../ui/Modal.js";
 
 export default function Header($app, initialState) {
-  this.state = initialState;
-  this.$target = $c("header");
+  this.state = initialState; // 초기상태를 부모 컴포넌트로부터 전달받음
+  this.$target = $c("header"); // 현재 컴포넌트의 HTML Element를 생성
 
-  $app.append(this.$target);
+  $app.append(this.$target); // 현재 컴포넌트를 사용하는 전달받은 부모 컴포넌트의 자식으로 추가
   user.subscribe(this);
 
+  // 상태 변경 함수 선언
   this.setState = (newState) => {
     this.state = { ...this.state, ...newState };
-    this.render();
+    this.render(); // 상태 변경 함수가 호출되면 현재 컴포넌트를 리렌더링함
   };
   const contentMap = {
     "SIGN UP": [
