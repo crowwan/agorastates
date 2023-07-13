@@ -49,110 +49,92 @@ export default function Main($app, initialState) {
     },
   ];
 
-  const onSubmit = () => {
-    const $title = $(".new-discussion-title");
-    const $content = $(".new-discussion-content");
-    const $tag = $(".new-discussion-tag");
+  this.render = () => {
+    const onSubmit = () => {
+      const $title = $(".new-discussion-title");
+      const $content = $(".new-discussion-content");
+      const $tag = $(".new-discussion-tag");
 
-    const id = Date.now().toString();
-    const userList = storage.getData("user");
-    const currentUser = userList[user.getCurrentUser()];
+      const id = Date.now().toString();
+      const userList = storage.getData("user");
+      const currentUser = userList[user.getCurrentUser()];
 
-    discussion.addDiscussion(id, {
-      id,
-      author: currentUser.id,
-      bodyHTML: $content.value,
-      title: $title.value,
-      tag: $tag.value.toLowerCase(),
-      avatarUrl: currentUser.url,
-      createdAt: new Date().toISOString(),
-      answer: null,
-    });
-  };
+      discussion.addDiscussion(id, {
+        id,
+        author: currentUser.id,
+        bodyHTML: $content.value,
+        title: $title.value,
+        tag: $tag.value.toLowerCase(),
+        avatarUrl: currentUser.url,
+        createdAt: new Date().toISOString(),
+        answer: null,
+      });
+    };
 
-  const onTagClick = (e) => {
-    if (e.target.dataset.filtername) {
-      const filterName = e.target.dataset.filtername;
-      const newState = {
-        tag: map((e) => {
-          if (e.name === filterName) {
-            e.selected = !e.selected;
-            if (e.selected) {
-              const filteredDiscussion = {};
-              go(
-                Object.values(this.state.discussions),
-                filterName === "unanswered"
-                  ? filter((e) => !e.answer)
-                  : filter((e) => e.tag === filterName),
-                map((e) => (filteredDiscussion[e.id] = e))
-              );
+    const onTagClick = (e) => {
+      if (e.target.dataset.filtername) {
+        const filterName = e.target.dataset.filtername;
+        const newState = {
+          tag: map((e) => {
+            if (e.name === filterName) {
+              e.selected = !e.selected;
+
+              let discussions = e.selected
+                ? go(
+                    Object.values(this.state.discussions),
+                    filterName === "unanswered"
+                      ? filter((e) => !e.answer)
+                      : filter((e) => e.tag === filterName)
+                  ).reduce((cur, acc) => ((cur[acc.id] = acc), cur), {})
+                : this.state.discussions;
+
               discussionSection.setState({
                 start: 0,
                 page: 0,
-                last: Math.ceil(Object.values(filteredDiscussion).length / 10),
-                discussions: filteredDiscussion,
+                last: Math.ceil(Object.values(discussions).length / 10),
+                discussions,
               });
             } else {
-              discussionSection.setState({
-                start: 0,
-                page: 0,
-                last: Math.ceil(
-                  Object.values(this.state.discussions).length / 10
-                ),
-                discussions: this.state.discussions,
-              });
+              e.selected = false;
             }
-          } else {
-            e.selected = false;
-          }
-          return e;
-        }, filterState),
-      };
-      asidel.setState(newState);
-      // asidem.setState(newState);
-    } else if (e.target.tagName === "BUTTON") {
-      new Modal(
-        this.$target,
-        {
-          hide: false,
-          body: {
-            title: "NEW DISCUSSION",
-            contentBody: newDiscussionContent,
-          },
-          btns: [
-            {
-              type: "",
-              text: "SUBMIT",
+            return e;
+          }, filterState),
+        };
+        asidel.setState(newState);
+      } else if (e.target.tagName === "BUTTON") {
+        new Modal(
+          this.$target,
+          {
+            hide: false,
+            body: {
+              title: "NEW DISCUSSION",
+              contentBody: newDiscussionContent,
             },
-          ],
-        },
-        onSubmit
-      );
-    }
+            btns: [
+              {
+                type: "",
+                text: "SUBMIT",
+              },
+            ],
+          },
+          onSubmit
+        );
+      }
+    };
+    const asidel = new AsideL(
+      this.$target,
+      {
+        tag: filterState,
+      },
+      onTagClick
+    );
+    const discussionSection = new DiscussionSection(this.$target, {
+      start: 0,
+      page: 0,
+      last: Math.ceil(Object.values(this.state.discussions).length / 10),
+      discussions: this.state.discussions,
+    });
   };
-
-  const asidel = new AsideL(
-    this.$target,
-    {
-      tag: filterState,
-    },
-    onTagClick
-  );
-  // const asidem = new AsideM(
-  //   this.$target,
-  //   {
-  //     tag: filterState,
-  //   },
-  //   onTagClick
-  // );
-  const discussionSection = new DiscussionSection(this.$target, {
-    start: 0,
-    page: 0,
-    last: Math.ceil(Object.values(this.state.discussions).length / 10),
-    discussions: this.state.discussions,
-  });
-
-  this.render = () => {};
 
   $app.append(this.$target);
   this.render();
